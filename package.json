@@ -1,0 +1,19 @@
+{
+  "name": "project-euler-js",
+  "version": "1.0.0",
+  "description": "JavaScript Solutions for Project Euler problems.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ganeshh123/project-euler-js.git"
+  },
+  "author": "Ganesh H",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ganeshh123/project-euler-js/issues"
+  },
+  "homepage": "https://github.com/ganeshh123/project-euler-js#readme"
+}
