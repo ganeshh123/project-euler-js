@@ -2,7 +2,7 @@ let primeFactors = []
 
 let generatePrimeFactors = (number) => {
 
-  // Qutiient keeps track of result after division
+  // Quotient keeps track of result after division
   let quotient = number
 
   /* If Even, keep dividing by two */
