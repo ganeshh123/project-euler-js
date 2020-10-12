@@ -1,3 +1,31 @@
+/* Alternate Solution */
+let fiboEvenSum2 = (limit) => {
+
+  let sum = 0
+
+  let a = 1
+  let b = 2
+  console.log(a)
+  console.log(b)
+  if(limit >= 2){
+      sum = sum + b
+  }
+  let c = 3
+  while(c <= limit){
+      console.log(c)
+      if(c % 2 === 0){
+          sum = sum + c
+      }
+
+      a = b
+      b = c
+
+      c = a + b
+  }
+
+  return sum
+}
+
 let fibNumbers = []
 
 /* Generates Fibonacci Numbers Under a Given Limit */
