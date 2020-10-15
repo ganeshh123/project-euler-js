@@ -1,33 +1,37 @@
 /* Solution Function */
-let smallestMult = (n) => {
+let smallestMult = (largestDivsor) => {
 
-    // Current value we are checking
-    let current = n - 1 
-    // Keeps track of whether we have solved or not
+    let solution
+    /* Keeps Track of Potential Solution */
+    let potentialSolution = largestDivsor
+    /* Boolean to control while loop */
     let unsolved = true
 
-    while(unsolved){
-        // Go to Next Value
-        current = current + 1
-        
-        // Try dividing by all numbers from 1 to n
-        let i
-        for(i = 1; i <= n ; i ++){
-            // If a number divides with a remainder, break out. No
-            // need to check the rest
-            if(current % i != 0){
+    while(unsolved === true){
+
+        let currentDivsor
+        /* Try dividing potential solution by all values from 
+            1 to largest divisor. If any of them produce a remainder,
+             break out */
+        for(currentDivsor = 1; currentDivsor <= largestDivsor; currentDivsor ++){
+            if(potentialSolution % currentDivsor !== 0){
                 break
-            }
-            //If on the last multiple, and previous check has passed
-            // we have a solution
-            if(i === n){
-                unsolved = false
+            }else{
+                /* If we just successfully divided by the largest
+                    divisor we need, then we have a solution! */
+                if(currentDivsor === largestDivsor){
+                    solution = potentialSolution
+                    unsolved = false
+                }
             }
         }
+        
+        /* Try next number */
+        potentialSolution = potentialSolution + 1
     }
     
-    return current
-}
+    return solution
 
+}
 /* Check Solution */
 console.log(smallestMult(20))
