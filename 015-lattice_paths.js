@@ -11,7 +11,7 @@ let factorial = (number) => {
 let latticePaths = (gridSize) => {
 
     /* 
-        Based on Binomial Coffecient Forumula at 
+        Based on Binomial Coeffecient Forumula at 
         https://en.wikipedia.org/wiki/Binomial_coefficient#Factorial_formula
     */
 
