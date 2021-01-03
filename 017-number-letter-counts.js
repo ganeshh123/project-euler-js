@@ -1,7 +1,8 @@
+/* Object Contains String Representation of Numbers in English */
 let strings = {
     'units' : [ '', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
         'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'],
-    'tens' : ['', 'ten', 'twenty', 'thirty', 'fourty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
+    'tens' : ['', 'ten', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
 }
 
 let numberLetterCounts = (limit) => {
@@ -9,15 +10,45 @@ let numberLetterCounts = (limit) => {
     let sum = 0
     let i
 
+    /* Go through every number from 1 to limit */
     for(i = 1; i <= limit; i++){
-        if( i < 20){
-            numberString = strings['units'][i]
-        }else if(i < 100){
-            numberString = strings['tens'][i / 10 | 0] + strings['units'][i % 10]
-        }else if(i < 1000){
-            //sum = sum + strings['units'][i].length
+
+        let currentNumber = i
+        let numberString = ''
+
+        /* Calculate how many thousands current number contains, add to number string, and
+            then subtract to have hundreds only */
+        let thousands = Math.floor(currentNumber / 1000)
+        if(thousands > 0){
+            numberString = numberString + strings['units'][thousands] + 'thousand'
+            currentNumber = currentNumber - (thousands * 1000)
         }
-        console.log(numberString)
+
+        /* Calculate how many hundreds current number contains, add to number string, and
+            then subtract to have tens only */
+        let hundreds = Math.floor(currentNumber / 100)
+        if(hundreds > 0){
+            numberString = numberString + strings['units'][hundreds] + 'hundred'
+            currentNumber = currentNumber - (hundreds * 100)
+            if(currentNumber > 0){
+                // We don't need the 'and' if there's nothing left
+                numberString = numberString + 'and'
+            }    
+        }
+
+        /* If remaining is less than twenty, add the appropriate string */
+        if(currentNumber < 20){
+            numberString = numberString + strings['units'][currentNumber]
+        }else{
+            /* If remaining is more than twenty, split into tens and units and add strings */
+            let tens = Math.floor(currentNumber / 10)
+            numberString = numberString + strings['tens'][tens]
+            currentNumber = currentNumber - (tens * 10)
+            numberString = numberString + strings['units'][currentNumber]
+        }
+
+        /* Calculate length of current number's string representation and add to sum */
+        console.log(i + ' : ' + numberString)
         sum = sum + numberString.length
     }
 
@@ -25,4 +56,4 @@ let numberLetterCounts = (limit) => {
 }
 
 /* Check Solution */
-console.log('Result is ' + numberLetterCounts(52))
+console.log('Result is ' + numberLetterCounts(1000))
